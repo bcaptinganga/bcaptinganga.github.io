@@ -13,7 +13,7 @@
             font-family: 'Arial', sans-serif;
         }
 
-        /* Navbar styles (same as before) */
+        /* Navbar styles */
         nav {
             background: linear-gradient(135deg, #6e8efb, #a777e3);
             color: white;
@@ -113,9 +113,10 @@
             background-color: #e9ecef;
         }
 
-        #services {
+        #readings {
             background-color: #dee2e6;
         }
+
         .button {
             display: inline-block;
             padding: 10px 20px;
@@ -125,11 +126,11 @@
             border-radius: 5px;
             font-weight: bold;
             transition: background-color 0.3s;
-}
+        }
 
-.button:hover {
-  background-color: #0056b3;
-}
+        .button:hover {
+            background-color: #0056b3;
+        }
 
         #portfolio {
             background-color: #ced4da;
@@ -153,7 +154,7 @@
             margin-bottom: 30px;
         }
 
-        /* Responsive styles (same as before) */
+        /* Responsive styles */
         @media (max-width: 768px) {
             .nav-links {
                 position: absolute;
@@ -226,11 +227,11 @@
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
+                <li><a href="#readings">Readings</a></li>
                 <li><a href="#portfolio">Portfolio</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            <div class="hamburger">
+            <div class="hamburger" aria-label="Menu" aria-expanded="false">
                 <div class="line1"></div>
                 <div class="line2"></div>
                 <div class="line3"></div>
@@ -251,11 +252,11 @@
         <p>Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor.</p>
     </section>
 
-    <section id="services">
-        <h1>Our Services</h1>
-        <p>Discover the range of services we offer to our clients and customers.</p>
+    <section id="readings">
+        <h1>Daily Readings</h1>
+        <p>Explore our collection of daily readings and spiritual guidance.</p>
         <p>Suspendisse in orci enim. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor.</p>
-        <a href="readings.html" class="button">Mass readings</a>
+        <a href="readings.html" class="button">View All Readings</a>
     </section>
 
     <section id="portfolio">
@@ -270,36 +271,38 @@
         <p>Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse in orci enim.</p>
     </section>
 
-<script>
-    const hamburger = document.querySelector('.hamburger');
-    const navLinks = document.querySelector('.nav-links');
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
 
-    // Mobile menu toggle
-    hamburger.addEventListener('click', () => {
-        navLinks.classList.toggle('open');
-        hamburger.classList.toggle('open');
-    });
-
-    // Close mobile menu when a link is clicked
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
-            if (window.innerWidth <= 768) {
-                navLinks.classList.remove('open');
-                hamburger.classList.remove('open');
-            }
+        // Mobile menu toggle
+        hamburger.addEventListener('click', () => {
+            const isOpen = navLinks.classList.toggle('open');
+            hamburger.classList.toggle('open');
+            hamburger.setAttribute('aria-expanded', isOpen);
         });
-    });
 
-    // Smooth scrolling for all links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                const isMobile = window.innerWidth <= 768;
+                if (isMobile) {
+                    navLinks.classList.remove('open');
+                    hamburger.classList.remove('open');
+                    hamburger.setAttribute('aria-expanded', 'false');
+                }
             });
         });
-    });
-</script>
-    
+
+        // Smooth scrolling for all links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
