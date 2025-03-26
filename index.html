@@ -270,50 +270,36 @@
         <p>Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse in orci enim.</p>
     </section>
 
-    <script>
-        const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('.nav-links');
-        const links = document.querySelectorAll('.nav-links li');
+<script>
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
 
-        // Mobile menu toggle
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('open');
-            links.forEach(link => {
-                link.classList.toggle('fade');
-            });
-            hamburger.classList.toggle('open');
+    // Mobile menu toggle
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('open');
+        hamburger.classList.toggle('open');
+    });
+
+    // Close mobile menu when a link is clicked
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth <= 768) {
+                navLinks.classList.remove('open');
+                hamburger.classList.remove('open');
+            }
         });
+    });
 
-        // Close mobile menu when a link is clicked
-        links.forEach(link => {
-            link.addEventListener('click', () => {
-                if (window.innerWidth <= 768) {
-                    navLinks.classList.remove('open');
-                    hamburger.classList.remove('open');
-                }
-            });
-        });
-
-        // Smooth scrolling for all links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-
-         const button = document.createElement('a');
-    button.href = 'service.html'; // Link to service page
-    button.textContent = 'Our Services';
-    button.className = 'service-button';
-
-    // Append the button to the container
-    const container = document.getElementById('serviceButtonContainer');
-    container.appendChild(button);
-
-        
+    // Smooth scrolling for all links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
             });
         });
-    </script>
+    });
+</script>
+    
 </body>
 </html>
