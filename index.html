@@ -139,23 +139,6 @@
             margin-bottom: 30px;
         }
 
-        .btn {
-            display: inline-block;
-            padding: 12px 24px;
-            background: linear-gradient(135deg, #6e8efb, #a777e3);
-            color: white;
-            text-decoration: none;
-            border-radius: 30px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-        }
-
         /* Responsive styles (same as before) */
         @media (max-width: 768px) {
             .nav-links {
@@ -229,7 +212,7 @@
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="services.html">Services</a></li> <!-- Changed to link to services.html -->
+                <li><a href="#services">Services</a></li>
                 <li><a href="#portfolio">Portfolio</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -258,8 +241,6 @@
         <h1>Our Services</h1>
         <p>Discover the range of services we offer to our clients and customers.</p>
         <p>Suspendisse in orci enim. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor.</p>
-        <!-- Added button linking to services.html -->
-        <a href="services.html" class="btn">View All Services</a>
     </section>
 
     <section id="portfolio">
@@ -298,7 +279,7 @@
             });
         });
 
-        // Smooth scrolling for internal links only
+        // Smooth scrolling for all links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
