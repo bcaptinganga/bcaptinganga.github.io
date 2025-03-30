@@ -1,346 +1,400 @@
 
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Services</title>
+    <title>BLESSED CARLO ACUTIS PRESS</title>
     <style>
-        /* Base Styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Arial', sans-serif;
         }
-
-        /* Navbar Styles */
-        nav {
-            background: linear-gradient(135deg, #6e8efb, #a777e3);
+        
+        body {
+            min-height: 100vh;
+            background-color: #252d5d;
             color: white;
-            padding: 15px 20px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: sticky;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        nav {
+            background-color: #b22222;
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 2rem;
+            position: fixed;
+            width: 100%;
             top: 0;
+            left: 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            height: 80px;
+            transition: all 0.3s ease;
             z-index: 1000;
         }
 
-        .navbar-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        nav.scrolled {
+            background-color: rgba(178, 34, 34, 0.9);
+            height: 60px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        nav.scrolled .logo a {
+            width: 50px;
+            height: 50px;
+        }
+
+        nav.scrolled .main-menu a {
+            height: 60px;
+            font-size: 1rem; /* Slightly smaller when scrolled */
+        }
+
+        .nav-container {
+            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
+            display: flex;
+            align-items: center;
         }
 
         .logo {
-            font-size: 24px;
-            font-weight: bold;
-            text-decoration: none;
-            color: white;
+            margin-right: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .logo a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid white;
+            background-color: white;
             transition: transform 0.3s ease;
         }
 
-        .logo:hover {
-            transform: scale(1.05);
+        .logo a:hover {
+            transform: scale(1.1);
         }
 
-        .nav-links {
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .main-menu {
             display: flex;
             list-style: none;
+            flex-grow: 1;
         }
 
-        .nav-links li {
-            margin-left: 30px;
+        .main-menu li {
+            margin-right: 1.5rem;
             position: relative;
         }
 
-        .nav-links a {
+        .main-menu a {
             color: white;
             text-decoration: none;
-            font-weight: 500;
-            font-size: 16px;
-            padding: 10px 0;
+            font-weight: 600; /* Bolder font */
+            font-size: 1.1rem; /* Increased from 0.9rem */
+            letter-spacing: 0.5px;
             transition: all 0.3s ease;
-            position: relative;
+            display: flex;
+            align-items: center;
+            height: 80px;
+            text-transform: uppercase;
+            padding: 0 15px;
         }
 
-        .nav-links a::before {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 50%;
+        .main-menu a:hover {
+            color: #f0f0f0;
+            background-color: rgba(36, 34, 178, 0.8);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            margin-left: 1rem;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
             background-color: white;
+            margin: 5px 0;
             transition: all 0.3s ease;
-            transform: translateX(-50%);
         }
 
-        .nav-links a:hover::before {
-            width: 100%;
-        }
-
-        /* Services Content Styles */
-        .services-hero {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            text-align: center;
-            padding: 100px 20px;
-        }
-
-        .services-container {
-            max-width: 1200px;
-            margin: 50px auto;
-            padding: 0 20px;
-        }
-
-        .service-category {
-            margin-bottom: 60px;
-        }
-
-        .service-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
-        }
-
-        .service-card {
-            background: white;
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .service-card h3 {
-            color: #6e8efb;
-            margin-bottom: 15px;
-            font-size: 1.5rem;
-        }
-
-        .service-icon {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: #a777e3;
-        }
-
-        /* Button Styles */
-        .btn {
+        /* Styled Button for Readings Section */
+        .readings-btn {
             display: inline-block;
-            padding: 12px 24px;
-            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            margin-top: 2rem;
+            padding: 12px 30px;
+            background-color: #b22222;
             color: white;
             text-decoration: none;
-            border-radius: 30px;
+            border-radius: 50px;
             font-weight: 600;
+            font-size: 1.1rem;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            margin-top: 20px;
+            border: 2px solid white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
-        .btn:hover {
+        .readings-btn:hover {
+            background-color: #9e1d1d;
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
         }
 
-        /* Mobile Styles */
         @media (max-width: 768px) {
-            .nav-links {
-                position: absolute;
-                right: 0;
+            nav {
+                height: 70px;
+                padding: 0.5rem 1rem;
+            }
+
+            nav.scrolled {
+                height: 60px;
+            }
+
+            .nav-container {
+                padding: 0;
+            }
+
+            .logo a {
+                width: 50px;
+                height: 50px;
+            }
+
+            .main-menu {
+                position: fixed;
                 top: 70px;
-                background: linear-gradient(135deg, #6e8efb, #a777e3);
+                left: -100%;
                 width: 100%;
+                height: calc(100vh - 70px);
+                background-color: #252d5d;
                 flex-direction: column;
                 align-items: center;
-                padding: 20px 0;
-                clip-path: circle(0px at 90% -10%);
-                -webkit-clip-path: circle(0px at 90% -10%);
-                transition: all 0.5s ease-out;
-                pointer-events: none;
+                padding-top: 2rem;
+                transition: left 0.5s ease;
+                z-index: 99;
             }
 
-            .nav-links.open {
-                clip-path: circle(1000px at 90% -10%);
-                -webkit-clip-path: circle(1000px at 90% -10%);
-                pointer-events: all;
+            .main-menu.active {
+                left: 0;
             }
 
-            .nav-links li {
-                margin: 15px 0;
-                opacity: 0;
+            .main-menu li {
+                margin: 1rem 0;
+                width: 100%;
+                text-align: center;
             }
 
-            .nav-links.open li {
-                opacity: 1;
+            .main-menu a {
+                justify-content: center;
+                height: auto;
+                padding: 1.5rem 0;
+                font-size: 1.3rem; /* Larger font for mobile */
+                background-color: transparent;
+            }
+
+            .main-menu a:hover {
+                background-color: rgba(178, 34, 34, 0.6);
             }
 
             .hamburger {
                 display: block;
+                position: absolute;
+                right: 20px;
             }
 
-            .service-cards {
-                grid-template-columns: 1fr;
+            .hamburger.active div:nth-child(1) {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+            .hamburger.active div:nth-child(2) {
+                opacity: 0;
+            }
+            .hamburger.active div:nth-child(3) {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+
+            nav:hover {
+                background-color: #b22222;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            }
+
+            .readings-btn {
+                padding: 15px 35px;
+                font-size: 1.2rem;
             }
         }
+
+        section {
+            min-height: 100vh;
+            padding: 100px 20px 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            transition: background-color 0.5s ease;
+        }
+
+        #home {
+            background-color: #1a237e;
+            color: white;
+        }
+
+        #readings {
+            background-color: #0d47a1;
+            color: white;
+        }
+
+        #prayers {
+            background-color: #1565c0;
+            color: white;
+        }
+
+        #news {
+            background-color: #1976d2;
+            color: white;
+        }
+
+        #about {
+            background-color: #1e88e5;
+            color: white;
+        }
+
+        h1 {
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+        }
+
+        p {
+            max-width: 800px;
+            margin: 0.5rem auto;
+            line-height: 1.6;
+        }
     </style>
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <!-- Updated Navbar with Service Categories -->
-    <nav>
-        <div class="navbar-container">
-            <a href="index.html" class="logo">CreativeStudio</a>
-            <ul class="nav-links">
-                <li><a href="#web-development">Web Development</a></li>
-                <li><a href="#video-editing">Video Editing</a></li>
-                <li><a href="#photography">Photography</a></li>
-                <li><a href="index.html" class="btn">Back to Home</a></li>
+    <nav id="mainNav">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="#home">
+                    <img src="Images/monstrance.jpg" alt="Blessed Carlo Acutis Press">
+                </a>
+            </div>
+            
+            <ul class="main-menu">
+                <li><a href="#home">HOME</a></li>
+                <li><a href="#massprayers">MASS PRAYERS</a></li>
+                <li><a href="#novena">NOVENA</a></li>
+                <li><a href="#rosaries">ROSARIES</a></li>
+                <li><a href="#prayerstosaints">PRAYERS TO SAINTS</a></li>
             </ul>
+            
             <div class="hamburger">
-                <div class="line1"></div>
-                <div class="line2"></div>
-                <div class="line3"></div>
+                <div></div>
+                <div></div>
+                <div></div>
             </div>
         </div>
     </nav>
 
-    <!-- Services Hero Section -->
-    <section class="services-hero">
-        <h1>Our Professional Services</h1>
-        <p>High-quality solutions tailored to your creative needs</p>
+    <section id="home">
+        <h1>START YOUR DAY WITH A PRAYER</h1>
+        <p>Blessed Carlo Acutis Press aims at preparing catholics for mass through mass readings, prayers and more</p>
+        <p>We aim to evangelize the good news of our lord Jesus Christ through technology as our patron Carlo Acutis did 
+            and also preserve our culture</p>
     </section>
 
-    <!-- Services Content -->
-    <div class="services-container">
-        <!-- Web Development Section -->
-        <div id="web-development" class="service-category">
-            <h2>Web Development Services</h2>
-            <div class="service-cards">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <h3>Custom Website Development</h3>
-                    <p>Bespoke websites built from scratch to match your unique requirements and brand identity.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-shopping-cart"></i>
-                    </div>
-                    <h3>E-Commerce Solutions</h3>
-                    <p>Complete online store setups with payment gateways, inventory management, and more.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <h3>Responsive Design</h3>
-                    <p>Websites that look and function perfectly on all devices from desktops to smartphones.</p>
-                </div>
-            </div>
-        </div>
+    <section id="massprayers">
+        <h1>MASS PRAYERS</h1>
+        <p>Blessed Carlo Acutis Press aims at preparing catholics for mass through mass readings, prayers and more</p>
+        <p>We aim to evangelize the good news of our lord Jesus Christ through technology as our patron Carlo Acutis did 
+            and also preserve our culture</p>
+    </section>
 
-        <!-- Video Editing Section -->
-        <div id="video-editing" class="service-category">
-            <h2>Video Editing Services</h2>
-            <div class="service-cards">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-film"></i>
-                    </div>
-                    <h3>Professional Editing</h3>
-                    <p>Cinematic editing with color grading, transitions, and effects to make your footage shine.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-ad"></i>
-                    </div>
-                    <h3>Commercial & Ads</h3>
-                    <p>Attention-grabbing video ads optimized for social media and television.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-music"></i>
-                    </div>
-                    <h3>Music Videos</h3>
-                    <p>Creative music video production that complements your audio perfectly.</p>
-                </div>
-            </div>
-        </div>
+    <section id="novena">
+        <h1>NOVENA</h1>
+        <p>Blessed Carlo Acutis Press aims at preparing catholics for mass through mass readings, prayers and more</p>
+        <p>We aim to evangelize the good news of our lord Jesus Christ through technology as our patron Carlo Acutis did 
+            and also preserve our culture</p>
+    </section>
 
-        <!-- Photography Section -->
-        <div id="photography" class="service-category">
-            <h2>Photography Services</h2>
-            <div class="service-cards">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-camera-retro"></i>
-                    </div>
-                    <h3>Portrait Photography</h3>
-                    <p>Professional portrait sessions with expert lighting and posing guidance.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-briefcase"></i>
-                    </div>
-                    <h3>Product Photography</h3>
-                    <p>High-quality product images that showcase your items in the best light.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-ring"></i>
-                    </div>
-                    <h3>Event Photography</h3>
-                    <p>Comprehensive coverage of weddings, corporate events, and special occasions.</p>
-                </div>
-            </div>
-        </div>
+    <section id="rosaries">
+        <h1>ROSARIES</h1>
+        <p>Blessed Carlo Acutis Press aims at preparing catholics for mass through mass readings, prayers and more</p>
+        <p>We aim to evangelize the good news of our lord Jesus Christ through technology as our patron Carlo Acutis did 
+            and also preserve our culture</p>
+    </section>
 
-        <!-- Back to Home Button -->
-        <div style="text-align: center; margin: 50px 0;">
-            <a href="index.html" class="btn">Back to Home</a>
-        </div>
-    </div>
+    <section id="prayerstosaints">
+        <h1>PRAYERS TO SAINTS</h1>
+        <p>Blessed Carlo Acutis Press aims at preparing catholics for mass through mass readings, prayers and more</p>
+        <p>We aim to evangelize the good news of our lord Jesus Christ through technology as our patron Carlo Acutis did 
+            and also preserve our culture</p>
+    </section>
 
     <script>
-        // Mobile Menu Functionality
         const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('.nav-links');
-        const links = document.querySelectorAll('.nav-links li');
-
+        const mainMenu = document.querySelector('.main-menu');
+        const nav = document.getElementById('mainNav');
+        
+        // Mobile menu toggle
         hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('open');
-            links.forEach((link, index) => {
-                if (link.style.animation) {
-                    link.style.animation = '';
-                } else {
-                    link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
+            hamburger.classList.toggle('active');
+            mainMenu.classList.toggle('active');
+        });
+        
+        // Close menu when clicking on a link (mobile)
+        document.querySelectorAll('.main-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    hamburger.classList.remove('active');
+                    mainMenu.classList.remove('active');
                 }
             });
-            hamburger.classList.toggle('open');
         });
-
-        // Smooth scrolling for service links
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+        
+        // Smooth scrolling for all links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
     </script>
 </body>
 </html>
+
 
