@@ -1,10 +1,13 @@
 
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Navbar with Content Sections</title>
+    <title>BLESSED CARLO ACUTIS PRESS</title>
     <style>
         * {
             margin: 0;
@@ -12,297 +15,687 @@
             box-sizing: border-box;
             font-family: 'Arial', sans-serif;
         }
-
-        /* Navbar styles */
-        nav {
-            background: linear-gradient(135deg, #6e8efb, #a777e3);
+        
+        body {
+            min-height: 100vh;
+            background-color: #252d5d;
             color: white;
-            padding: 15px 20px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: sticky;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        nav {
+            background-color: #b22222;
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 2rem;
+            position: fixed;
+            width: 100%;
             top: 0;
+            left: 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            height: 80px;
+            transition: all 0.3s ease;
             z-index: 1000;
         }
 
-        .navbar-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        nav.scrolled {
+            background-color: rgba(178, 34, 34, 0.9);
+            height: 60px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        nav.scrolled .logo a {
+            width: 50px;
+            height: 50px;
+        }
+
+        nav.scrolled .main-menu a {
+            height: 60px;
+            font-size: 1rem;
+        }
+
+        .nav-container {
+            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
+            display: flex;
+            align-items: center;
         }
 
         .logo {
-            font-size: 24px;
-            font-weight: bold;
-            text-decoration: none;
-            color: white;
+            margin-right: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .logo a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid white;
+            background-color: white;
             transition: transform 0.3s ease;
         }
 
-        .logo:hover {
-            transform: scale(1.05);
+        .logo a:hover {
+            transform: scale(1.1);
         }
 
-        .nav-links {
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .main-menu {
             display: flex;
             list-style: none;
+            flex-grow: 1;
         }
 
-        .nav-links li {
-            margin-left: 30px;
+        .main-menu li {
+            margin-right: 1.5rem;
             position: relative;
         }
 
-        .nav-links a {
+        .main-menu a {
             color: white;
             text-decoration: none;
-            font-weight: 500;
-            font-size: 16px;
-            padding: 10px 0;
+            font-weight: 600;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
             transition: all 0.3s ease;
-            position: relative;
+            display: flex;
+            align-items: center;
+            height: 80px;
+            text-transform: uppercase;
+            padding: 0 15px;
         }
 
-        .nav-links a::before {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 50%;
-            background-color: white;
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
-        }
-
-        .nav-links a:hover::before {
-            width: 100%;
+        .main-menu a:hover {
+            color: #f0f0f0;
+            background-color: rgba(36, 34, 178, 0.8);
         }
 
         .hamburger {
             display: none;
             cursor: pointer;
-            padding: 5px;
+            margin-left: 1rem;
         }
 
         .hamburger div {
             width: 25px;
             height: 3px;
             background-color: white;
-            margin: 5px;
+            margin: 5px 0;
             transition: all 0.3s ease;
         }
 
-        /* Content section styles */
+        /* Styled Button for Readings Section */
+        .readings-btn {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 12px 30px;
+            background-color: #b22222;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: 2px solid white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .readings-btn:hover {
+            background-color: #9e1d1d;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Cards container styling */
+        .cards-container {
+            display: flex;
+            overflow-x: auto;
+            padding: 2rem 1rem;
+            gap: 2rem;
+            scroll-snap-type: x mandatory;
+            max-width: 100%;
+            margin: 2rem auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .cards-container::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .cards-container::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .cards-container::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+        }
+
+        .cards-container::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .card {
+            min-width: 300px;
+            max-width: 350px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+            scroll-snap-align: start;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.75rem;
+            color: white;
+        }
+
+        .card-text {
+            font-size: 1rem;
+            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+        }
+
+        .card-btn {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background-color: rgba(178, 34, 34, 0.8);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 1px solid white;
+        }
+
+        .card-btn:hover {
+            background-color: rgba(178, 34, 34, 1);
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                height: 70px;
+                padding: 0.5rem 1rem;
+            }
+
+            nav.scrolled {
+                height: 60px;
+            }
+
+            .nav-container {
+                padding: 0;
+            }
+
+            .logo a {
+                width: 50px;
+                height: 50px;
+            }
+
+            .main-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background-color: #252d5d;
+                flex-direction: column;
+                align-items: center;
+                padding-top: 2rem;
+                transition: left 0.5s ease;
+                z-index: 99;
+            }
+
+            .main-menu.active {
+                left: 0;
+            }
+
+            .main-menu li {
+                margin: 1rem 0;
+                width: 100%;
+                text-align: center;
+            }
+
+            .main-menu a {
+                justify-content: center;
+                height: auto;
+                padding: 1.5rem 0;
+                font-size: 1.3rem;
+                background-color: transparent;
+            }
+
+            .main-menu a:hover {
+                background-color: rgba(178, 34, 34, 0.6);
+            }
+
+            .hamburger {
+                display: block;
+                position: absolute;
+                right: 20px;
+            }
+
+            .hamburger.active div:nth-child(1) {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+            .hamburger.active div:nth-child(2) {
+                opacity: 0;
+            }
+            .hamburger.active div:nth-child(3) {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+
+            nav:hover {
+                background-color: #b22222;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            }
+
+            .readings-btn {
+                padding: 15px 35px;
+                font-size: 1.2rem;
+            }
+
+            .card {
+                min-width: 280px;
+            }
+        }
+
         section {
             min-height: 100vh;
-            padding: 80px 20px;
+            padding: 100px 20px 80px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
+            transition: background-color 0.5s ease;
         }
 
         #home {
-            background-color: #f8f9fa;
-        }
-
-        #about {
-            background-color: #e9ecef;
+            background-color: #1a237e;
+            color: white;
         }
 
         #readings {
-            background-color: #dee2e6;
-        }
-
-        .button {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #007bff;
+            background-color: #0d47a1;
             color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background-color 0.3s;
         }
 
-        .button:hover {
-            background-color: #0056b3;
+        #prayers {
+            background-color: #1565c0;
+            color: white;
         }
 
-        #portfolio {
-            background-color: #ced4da;
+        #news {
+            background-color: #1976d2;
+            color: white;
         }
 
-        #contact {
-            background-color: #adb5bd;
+        #about {
+            background-color: #1e88e5;
+            color: white;
         }
 
         h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            color: #343a40;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
         }
 
         p {
-            font-size: 1.2rem;
-            color: #495057;
             max-width: 800px;
+            margin: 0.5rem auto;
             line-height: 1.6;
-            margin-bottom: 30px;
         }
 
-        /* Responsive styles */
-        @media (max-width: 768px) {
-            .nav-links {
-                position: absolute;
-                right: 0;
-                top: 70px;
-                background: linear-gradient(135deg, #6e8efb, #a777e3);
-                width: 100%;
-                flex-direction: column;
-                align-items: center;
-                padding: 20px 0;
-                clip-path: circle(0px at 90% -10%);
-                -webkit-clip-path: circle(0px at 90% -10%);
-                transition: all 0.5s ease-out;
-                pointer-events: none;
-            }
-
-            .nav-links.open {
-                clip-path: circle(1000px at 90% -10%);
-                -webkit-clip-path: circle(1000px at 90% -10%);
-                pointer-events: all;
-            }
-
-            .nav-links li {
-                margin: 15px 0;
-                opacity: 0;
-            }
-
-            .nav-links.open li {
-                opacity: 1;
-            }
-
-            .nav-links li:nth-child(1) {
-                transition: all 0.5s ease 0.2s;
-            }
-
-            .nav-links li:nth-child(2) {
-                transition: all 0.5s ease 0.4s;
-            }
-
-            .nav-links li:nth-child(3) {
-                transition: all 0.5s ease 0.6s;
-            }
-
-            .nav-links li:nth-child(4) {
-                transition: all 0.5s ease 0.8s;
-            }
-
-            .hamburger {
-                display: block;
-            }
-
-            .hamburger.open .line1 {
-                transform: rotate(-45deg) translate(-5px, 6px);
-            }
-
-            .hamburger.open .line2 {
-                opacity: 0;
-            }
-
-            .hamburger.open .line3 {
-                transform: rotate(45deg) translate(-5px, -6px);
-            }
+        .section-content {
+            width: 100%;
+            max-width: 1200px;
         }
     </style>
 </head>
 <body>
-    <nav>
-        <div class="navbar-container">
-            <a href="#home" class="logo">NavBrand</a>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#readings">Readings</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#contact">Contact</a></li>
+    <nav id="mainNav">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="#home">
+                    <img src="Images/monstrance.jpg" alt="Blessed Carlo Acutis Press">
+                </a>
+            </div>
+            
+            <ul class="main-menu">
+                <li><a href="#home">HOME</a></li>
+                <li><a href="#readings">READINGS</a></li>
+                <li><a href="#prayers">PRAYERS</a></li>
+                <li><a href="#news">NEWS</a></li>
+                <li><a href="#about">ABOUT</a></li>
             </ul>
-            <div class="hamburger" aria-label="Menu" aria-expanded="false">
-                <div class="line1"></div>
-                <div class="line2"></div>
-                <div class="line3"></div>
+            
+            <div class="hamburger">
+                <div></div>
+                <div></div>
+                <div></div>
             </div>
         </div>
     </nav>
 
-    <!-- Content Sections -->
     <section id="home">
-        <h1>Welcome to Our Website</h1>
-        <p>This is the home section where you can introduce your company or personal brand. Highlight your main value proposition here.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula.</p>
-    </section>
-
-    <section id="about">
-        <h1>About Us</h1>
-        <p>Learn more about who we are and what we stand for. Our mission, vision, and values.</p>
-        <p>Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor.</p>
+        <div class="section-content">
+            <h1>Welcome to Our Website</h1>
+            <p>Blessed Carlo Acutis Press aims at preparing catholics for mass through mass readings, prayers and more</p>
+            <p>We aim to evangelize the good news of our lord Jesus Christ through technology as our patron Carlo Acutis did 
+                and also preserve our culture</p>
+            
+            <div class="cards-container">
+                <div class="card">
+                    <img src="https://source.unsplash.com/random/600x400/?eucharist" alt="Eucharist" class="card-img">
+                    <div class="card-content">
+                        <h3 class="card-title">The Holy Eucharist</h3>
+                        <p class="card-text">Discover the beauty and mystery of the Eucharist, the source and summit of our Catholic faith.</p>
+                        <a href="#" class="card-btn">Learn More</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="https://source.unsplash.com/random/600x400/?carlo-acutis" alt="Carlo Acutis" class="card-img">
+                    <div class="card-content">
+                        <h3 class="card-title">Blessed Carlo Acutis</h3>
+                        <p class="card-text">Learn about the life of this modern saint who used technology to spread devotion to the Eucharist.</p>
+                        <a href="#" class="card-btn">Read His Story</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="https://source.unsplash.com/random/600x400/?bible" alt="Bible Study" class="card-img">
+                    <div class="card-content">
+                        <h3 class="card-title">Daily Scripture</h3>
+                        <p class="card-text">Start your day with God's word. Explore our daily scripture reflections and meditations.</p>
+                        <a href="#" class="card-btn">Read Scripture</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="https://source.unsplash.com/random/600x400/?rosary" alt="Rosary" class="card-img">
+                    <div class="card-content">
+                        <h3 class="card-title">Pray the Rosary</h3>
+                        <p class="card-text">Join us in this powerful Marian devotion that brings peace and graces to our lives.</p>
+                        <a href="#" class="card-btn">Pray Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <section id="readings">
-        <h1>Daily Readings</h1>
-        <p>Explore our collection of daily readings and spiritual guidance.</p>
-        <p>Suspendisse in orci enim. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor.</p>
-        <a href="readings.html" class="button">View All Readings</a>
+        <div class="section-content">
+            <h1>MASS READINGS</h1>
+            <p>Blessed Carlo Acutis Press aims at preparing catholics for mass through mass readings, prayers and more</p>
+            <p>We aim to evangelize the good news of our lord Jesus Christ through technology as our patron Carlo Acutis did 
+                and also preserve our culture</p>
+            
+            <div class="cards-container">
+                <div class="card">
+                    <img src="https://source.unsplash.com/random/600x400/?mass" alt="Sunday Mass" class="card-img">
+                    <div class="card-content">
+                        <h3 class="card-title">Sunday Readings</h3>
+                        <p class="card-text">Prepare for Sunday Mass with the complete readings, reflections, and commentary.</p>
+                        <a href="#" class="card-btn">View Readings</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="https://source.unsplash.com/random/600x400/?daily-mass" alt="Daily Mass" class="card-img">
+                    <div class="card-content">
+                        <h3 class="card-title">Daily Readings</h3>
+                        <p class="card-text">Access the daily Mass readings with explanations to deepen your understanding.</p>
+                        <a href="#" class="card-btn">Today's Readings</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="https://source.unsplash.com/random/600x400/?gospel" alt="Gospel" class="card-img">
+                    <div class="card-content">
+                        <h3 class="card-title">Gospel Reflections</h3>
+                        <p class="card-text">Meditate on the Gospel with reflections from trusted Catholic sources.</p>
+                        <a href="#" class="card-btn">Reflect Today</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="https://source.unsplash.com/random/600x400/?lectionary" alt="Lectionary" class="card-img">
+                    <div class="card-content">
+                        <h3 class="card-title">Liturgical Calendar</h3>
+                        <p class="card-text">Explore the Church's liturgical year and special feast days.</p>
+                        <a href="#" class="card-btn">View Calendar</a>
+                    </div>
+                </div>
+            </div>
+            
+            <a href="readings.html" class="readings-btn">View Daily Readings</a>
+        </div>
     </section>
 
-    <section id="portfolio">
-        <h1>Our Portfolio</h1>
-        <p>View our previous work and case studies that showcase our capabilities.</p>
-        <p>Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor.</p>
+    <section id="prayers">
+        <div class="section-content">
+            <h1>CATHOLIC PRAYERS</h1>
+            <p>Blessed Carlo Acutis Press aims at preparing catholics for mass through mass readings, prayers and more</p>
+            <p>We aim to evangelize the good news of our lord Jesus Christ through technology as our patron Carlo Acutis did 
+                and also preserve our culture</p>
+            
+            <div class="cards-container">
+                <div class="card">
+                    <img src="https://source.unsplash.com/random/600x400/?prayer" alt="Basic Prayers" class="card-img">
+                    <div class="card-content">
+                        <h3 class="card-title">Basic Catholic Prayers</h3>
+                        <p class="card-text">Learn the essential prayers every Catholic should know by heart.</p>
+                        <a href="#" class="card-btn">Pray Now</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="https://source.unsplash.com/random/600x400/?chapel" alt="Divine Mercy" class="card-img">
+                    <div class="card-content">
+                        <h3 class="card-title">Divine Mercy Chaplet</h3>
+                        <p class="card-text">Pray this powerful devotion revealed to St. Faustina for God's mercy.</p>
+                        <a href="#" class="card-btn">Pray Chaplet</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="https://source.unsplash.com/random/600x400/?saints" alt="Saints" class="card-img">
+                    <div class="card-content">
+                        <h3 class="card-title">Prayers to Saints</h3>
+                        <p class="card-text">Find prayers to ask for the intercession of your favorite saints.</p>
+                        <a href="#" class="card-btn">View Prayers</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="https://source.unsplash.com/random/600x400/?liturgy" alt="Liturgy" class="card-img">
+                    <div class="card-content">
+                        <h3 class="card-title">Liturgy of the Hours</h3>
+                        <p class="card-text">Pray with the Church throughout the day with this ancient prayer.</p>
+                        <a href="#" class="card-btn">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            
+            <a href="prayers.html" class="readings-btn">Catholic Prayers</a>
+        </div>
     </section>
 
-    <section id="contact">
-        <h1>Contact Us</h1>
-        <p>Get in touch with our team for inquiries, collaborations, or support.</p>
-        <p>Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse in orci enim.</p>
+    <section id="news">
+        <div class="section-content">
+            <h1>KEEPING YOU UP TO DATE</h1>
+            <p>Blessed Carlo Acutis Press aims at preparing catholics for mass through mass readings, prayers and more</p>
+            <p>We aim to evangelize the good news of our lord Jesus Christ through technology as our patron Carlo Acutis did 
+                and also preserve our culture</p>
+            
+            <div class="cards-container">
+                <div class="card">
+                    <img src="https://source.unsplash.com/random/600x400/?pope" alt="Pope Francis" class="card-img">
+                    <div class="card-content">
+                        <h3 class="card-title">Pope's Message</h3>
+                        <p class="card-text">Latest homilies and messages from Pope Francis to the universal Church.</p>
+                        <a href="#" class="card-btn">Read More</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="https://source.unsplash.com/random/600x400/?cathedral" alt="Church News" class="card-img">
+                    <div class="card-content">
+                        <h3 class="card-title">Church News</h3>
+                        <p class="card-text">Important updates and events from the Catholic Church worldwide.</p>
+                        <a href="#" class="card-btn">View News</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="https://source.unsplash.com/random/600x400/?event" alt="Events" class="card-img">
+                    <div class="card-content">
+                        <h3 class="card-title">Upcoming Events</h3>
+                        <p class="card-text">Find Catholic conferences, retreats, and special Masses near you.</p>
+                        <a href="#" class="card-btn">See Events</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="https://source.unsplash.com/random/600x400/?blog" alt="Blog" class="card-img">
+                    <div class="card-content">
+                        <h3 class="card-title">Our Blog</h3>
+                        <p class="card-text">Read inspiring articles on faith, culture, and living as a Catholic today.</p>
+                        <a href="#" class="card-btn">Read Blog</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="section-content">
+            <h1>KNOW MORE ABOUT US</h1>
+            <p>Blessed Carlo Acutis Press aims at preparing catholics for mass through mass readings, prayers and more</p>
+            <p>We aim to evangelize the good news of our lord Jesus Christ through technology as our patron Carlo Acutis did 
+                and also preserve our culture</p>
+            
+            <div class="cards-container">
+                <div class="card">
+                    <img src="https://source.unsplash.com/random/600x400/?team" alt="Our Team" class="card-img">
+                    <div class="card-content">
+                        <h3 class="card-title">Our Mission</h3>
+                        <p class="card-text">Learn about our goals and how we're working to spread the Catholic faith.</p>
+                        <a href="#" class="card-btn">Read More</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="https://source.unsplash.com/random/600x400/?carlo-acutis-2" alt="Carlo Acutis" class="card-img">
+                    <div class="card-content">
+                        <h3 class="card-title">Our Patron</h3>
+                        <p class="card-text">Discover why we chose Blessed Carlo Acutis as our inspiration and guide.</p>
+                        <a href="#" class="card-btn">Meet Carlo</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="https://source.unsplash.com/random/600x400/?volunteer" alt="Volunteer" class="card-img">
+                    <div class="card-content">
+                        <h3 class="card-title">Get Involved</h3>
+                        <p class="card-text">Find out how you can support our mission and join our team.</p>
+                        <a href="#" class="card-btn">Volunteer</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="https://source.unsplash.com/random/600x400/?contact" alt="Contact" class="card-img">
+                    <div class="card-content">
+                        <h3 class="card-title">Contact Us</h3>
+                        <p class="card-text">Have questions or suggestions? We'd love to hear from you!</p>
+                        <a href="#" class="card-btn">Reach Out</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <script>
         const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('.nav-links');
-
+        const mainMenu = document.querySelector('.main-menu');
+        const nav = document.getElementById('mainNav');
+        
         // Mobile menu toggle
         hamburger.addEventListener('click', () => {
-            const isOpen = navLinks.classList.toggle('open');
-            hamburger.classList.toggle('open');
-            hamburger.setAttribute('aria-expanded', isOpen);
+            hamburger.classList.toggle('active');
+            mainMenu.classList.toggle('active');
         });
-
-        // Close mobile menu when a link is clicked
-        document.querySelectorAll('.nav-links a').forEach(link => {
+        
+        // Close menu when clicking on a link (mobile)
+        document.querySelectorAll('.main-menu a').forEach(link => {
             link.addEventListener('click', () => {
-                const isMobile = window.innerWidth <= 768;
-                if (isMobile) {
-                    navLinks.classList.remove('open');
-                    hamburger.classList.remove('open');
-                    hamburger.setAttribute('aria-expanded', 'false');
+                if (window.innerWidth <= 768) {
+                    hamburger.classList.remove('active');
+                    mainMenu.classList.remove('active');
                 }
             });
         });
-
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+        
         // Smooth scrolling for all links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
     </script>
 </body>
 </html>
+
+
+
