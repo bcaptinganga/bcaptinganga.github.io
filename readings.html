@@ -3,58 +3,237 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liturgical Readings | BLESSED CARLO ACUTIS PRESS</title>
-    <link rel="stylesheet" href="readings.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1e2ead;
+            --secondary-color: #c80303;
+            --accent-color: #efc050;
+            --text-color: #fff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            font-size: 18px;
+        }
+
+        /* Navigation Styles */
+        .navbar {
+            background-color: var(--primary-color);
+            height: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 30px;
+            position: relative;
+        }
+
+        .logo {
+            color: var(--accent-color);
+            font-weight: 600;
+            font-size: 1.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            width: 60%;
+            justify-content: space-around;
+        }
+
+        .nav-links li a {
+            color: var(--accent-color);
+            text-decoration: none;
+            text-transform: capitalize;
+            font-size: 1.1rem;
+            font-weight: 500;
+            padding: 10px 15px;
+            transition: 0.3s ease;
+        }
+
+        .nav-links li a:hover {
+            color: var(--secondary-color);
+            transform: scale(1.05);
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: var(--accent-color);
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+
+        /* Mobile Menu */
+        @media screen and (max-width: 768px) {
+            body {
+                overflow-x: hidden;
+                font-size: 20px;
+            }
+            
+            .nav-links {
+                position: absolute;
+                right: 0;
+                top: 79px; /* change the height of sidebar menu  */
+                height: calc(100vh - 79px);  /* change the height of sidebar menu  */
+                background-color: var(--primary-color);
+                flex-direction: column;
+                align-items: center;
+                width: 50%;
+                transform: translateX(100%);
+                transition: transform 0.5s ease-in;
+                z-index: 1;
+            }
+            
+            .nav-links li {
+                opacity: 0;
+                margin: 20px 0;
+                width: 100%;
+                text-align: center;                
+            }
+            
+            .nav-links a {
+                font-size: 13.rem;
+                padding: 15px 0;
+                display: block;
+            }
+
+
+            .hamburger {
+                display: block;
+            }
+
+            .logo {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* Nav Active Class */
+        .nav-active {
+            transform: translateX(0%);
+        }
+
+        /* Keyframes for Links */
+        @keyframes navLinkFade {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0px);
+            }
+        }
+
+        /* Toggle Animation */
+        .toggle .line1 {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+        .toggle .line2 {
+            opacity: 0;
+        }
+        .toggle .line3 {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        /* Main Content */
+        main {
+            padding: 30px;
+            min-height: calc(100vh - 140px);
+        }
+
+        section {
+            margin-bottom: 50px;
+            padding: 25px;
+            border-bottom: 2px solid #eee;
+            text-align: center;
+        }
+        
+        h2 {
+            font-size: 2.2rem; /* Larger headings */
+            margin-bottom: 15px;
+        }
+        
+        p {
+            font-size: 1.2rem; /* Larger paragraph text */
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 25px;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .return-home {
+            background-color: var(--accent-color);
+            border: none;
+            padding: 12px 25px;
+            margin-top: 15px;
+            cursor: pointer;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .return-home a {
+            color: #1f1f1f;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
-    <div id="header">
-        <div class="container">
-            <nav class="navbar">
-                <img id="img" src="Images/logo.PNG" alt="BLESSED CARLO ACUTIS PRESS Logo">
-                <div class="hamburger" id="hamburger">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </div>
-                <ul class="navbar_menu" id="navbar_menu">
-                    <li class="navbar_item"><a href="#ordinary-time" class="navbar_links">ORDINARY TIME</a></li>
-                    <li class="navbar_item"><a href="#lent" class="navbar_links">LENT</a></li>
-                    <li class="navbar_item"><a href="#advent" class="navbar_links">ADVENT</a></li>
-                    <li class="navbar_item"><a href="#christmas" class="navbar_links">CHRISTMAS</a></li>
-                    <li class="navbar_item"><a href="#easter" class="navbar_links">EASTER</a></li>
-                    <li class="navbar_item"><a href="#saints" class="navbar_links">SAINTS</a></li>
-                </ul>
-            </nav>
+    <nav class="navbar">
+        <div class="logo">BLESSED CARLO ACUTIS PRESS</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#ordinary-time">Ordinary Time</a></li>
+            <li><a href="#lent">Lent</a></li>
+            <li><a href="#easter">Easter</a></li>
+            <li><a href="#advent">Advent</a></li>
+            <li><a href="#christmas">Christmas</a></li>
+            <li><a href="#saints">Saints</a></li>
+        </ul>
+        <div class="hamburger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
         </div>
-    </div>
+    </nav>
 
     <main>
         <article class="readings-container">
+            <!-- Home Section -->
+            <section id="home" class="liturgical-section">
+                <div class="section-header">
+                    <h2>Welcome to Liturgical Readings</h2>
+                    <p>Daily readings and reflections for the liturgical year</p>
+                </div>
+            </section>
+
             <!-- Ordinary Time Section -->
             <section id="ordinary-time" class="liturgical-section">
                 <div class="section-header">
                     <h2>Ordinary Time</h2>
                     <p>The season of growth and discipleship</p>
-                </div>
-                <div class="cards-container">
-                    <div class="liturgical-card">
-                        <h3>Week 1</h3>
-                        <p>Readings focusing on the call to discipleship</p>
-                        <a href="#" class="btn">View Readings</a>
-                    </div>
-                    <div class="liturgical-card">
-                        <h3>Week 5</h3>
-                        <p>Themes of service and humility</p>
-                        <a href="#" class="btn">View Readings</a>
-                    </div>
-                    <div class="liturgical-card">
-                        <h3>Week 22</h3>
-                        <p>Teachings on the Kingdom of God</p>
-                        <a href="#" class="btn">View Readings</a>
-                    </div>
                 </div>
             </section>
 
@@ -64,22 +243,13 @@
                     <h2>Lent</h2>
                     <p>Season of repentance and preparation</p>
                 </div>
-                <div class="cards-container">
-                    <div class="liturgical-card">
-                        <h3>Ash Wednesday</h3>
-                        <p>Beginning of the Lenten journey</p>
-                        <a href="#" class="btn">View Readings</a>
-                    </div>
-                    <div class="liturgical-card">
-                        <h3>3rd Sunday</h3>
-                        <p>The Samaritan woman at the well</p>
-                        <a href="#" class="btn">View Readings</a>
-                    </div>
-                    <div class="liturgical-card">
-                        <h3>Holy Week</h3>
-                        <p>Passion narratives and last days of Christ</p>
-                        <a href="#" class="btn">View Readings</a>
-                    </div>
+            </section>
+
+            <!-- Easter Section -->
+            <section id="easter" class="liturgical-section">
+                <div class="section-header">
+                    <h2>Easter</h2>
+                    <p>Celebration of the Resurrection</p>
                 </div>
             </section>
 
@@ -89,23 +259,6 @@
                     <h2>Advent</h2>
                     <p>Preparation for the coming of Christ</p>
                 </div>
-                <div class="cards-container">
-                    <div class="liturgical-card">
-                        <h3>1st Sunday</h3>
-                        <p>Watchfulness for the Lord's coming</p>
-                        <a href="#" class="btn">View Readings</a>
-                    </div>
-                    <div class="liturgical-card">
-                        <h3>Gaudete Sunday</h3>
-                        <p>Rejoice! The Lord is near</p>
-                        <a href="#" class="btn">View Readings</a>
-                    </div>
-                    <div class="liturgical-card">
-                        <h3>O Antiphons</h3>
-                        <p>Ancient prayers for December 17-23</p>
-                        <a href="#" class="btn">View Readings</a>
-                    </div>
-                </div>
             </section>
 
             <!-- Christmas Section -->
@@ -113,48 +266,6 @@
                 <div class="section-header">
                     <h2>Christmas</h2>
                     <p>Celebration of the Nativity</p>
-                </div>
-                <div class="cards-container">
-                    <div class="liturgical-card">
-                        <h3>Christmas Vigil</h3>
-                        <p>Readings for Christmas Eve</p>
-                        <a href="#" class="btn">View Readings</a>
-                    </div>
-                    <div class="liturgical-card">
-                        <h3>Christmas Day</h3>
-                        <p>The birth of our Savior</p>
-                        <a href="#" class="btn">View Readings</a>
-                    </div>
-                    <div class="liturgical-card">
-                        <h3>Epiphany</h3>
-                        <p>The manifestation to the Gentiles</p>
-                        <a href="#" class="btn">View Readings</a>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Easter Section -->
-            <section id="easter" class="liturgical-section">
-                <div class="section-header">
-                    <h2>Easter</h2>
-                    <p>Celebration of the Resurrection</p>
-                </div>
-                <div class="cards-container">
-                    <div class="liturgical-card">
-                        <h3>Easter Vigil</h3>
-                        <p>The mother of all vigils</p>
-                        <a href="#" class="btn">View Readings</a>
-                    </div>
-                    <div class="liturgical-card">
-                        <h3>Easter Sunday</h3>
-                        <p>Christ is risen! Alleluia!</p>
-                        <a href="#" class="btn">View Readings</a>
-                    </div>
-                    <div class="liturgical-card">
-                        <h3>Pentecost</h3>
-                        <p>The coming of the Holy Spirit</p>
-                        <a href="#" class="btn">View Readings</a>
-                    </div>
                 </div>
             </section>
 
@@ -164,34 +275,55 @@
                     <h2>Saints Feast Days</h2>
                     <p>Celebrating the holy men and women of God</p>
                 </div>
-                <div class="cards-container">
-                    <div class="liturgical-card">
-                        <h3>Blessed Carlo Acutis</h3>
-                        <p>October 12 - Patron of our press</p>
-                        <a href="#" class="btn">View Readings</a>
-                    </div>
-                    <div class="liturgical-card">
-                        <h3>St. Therese</h3>
-                        <p>October 1 - The Little Flower</p>
-                        <a href="#" class="btn">View Readings</a>
-                    </div>
-                    <div class="liturgical-card">
-                        <h3>St. Francis</h3>
-                        <p>October 4 - Patron of ecology</p>
-                        <a href="#" class="btn">View Readings</a>
-                    </div>
-                </div>
             </section>
         </article>
     </main>
 
     <footer class="site-footer">
         <div class="container">
-            <p>© 2023 BLESSED CARLO ACUTIS PRESS. All rights reserved.</p>
+            <p>© 2025 BLESSED CARLO ACUTIS PRESS. All rights reserved.</p>
             <button class="return-home"><a href="index.html">RETURN HOME</a></button>
         </div>
     </footer>
 
-    <script src="readings.js"></script>
+    <script>
+        // Hamburger Menu Functionality
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        const navItems = document.querySelectorAll('.nav-links li');
+
+        hamburger.addEventListener('click', () => {
+            // Toggle Nav
+            navLinks.classList.toggle('nav-active');
+            
+            // Animate Links
+            navItems.forEach((link, index) => {
+                if (link.style.animation) {
+                    link.style.animation = '';
+                } else {
+                    link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
+                }
+            });
+            
+            // Hamburger Animation
+            hamburger.classList.toggle('toggle');
+        });
+
+        // Close menu when clicking on a link (for mobile)
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    navLinks.classList.remove('nav-active');
+                    hamburger.classList.remove('toggle');
+                    navItems.forEach(link => {
+                        link.style.animation = '';
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
+
+
+
